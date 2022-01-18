@@ -1,0 +1,4 @@
+*.py
+libft
+__pycache__
+a.out
