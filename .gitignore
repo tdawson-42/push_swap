@@ -1,4 +1,5 @@
 *.py
+python
 libft
 __pycache__
 a.out

@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:21:02 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/18 18:45:07 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/18 20:22:08 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	search_position(t_stack *stack, int n)
 	t_node	*after;
 
 	i = 0;
-	before = stack->tail;
+	before = stack->head->prev;
 	after = stack->head;
 	while (1)
 	{
@@ -85,7 +85,7 @@ void	push_swap(int *nums, int count)
 	// 	push(&b, pop(&a));
 	// 	write(STDOUT_FILENO, "pb\n", 3);
 	// }
-	// sort3(&a, a.head->n, a.head->next->n, a.tail->n);
+	// sort3(&a, a.head->n, a.head->next->n, a.head->prev->n);
 	int to_push = a.size / 2;
 	for (int i = 0; i < to_push; i++)
 		push(&b, pop(&a));

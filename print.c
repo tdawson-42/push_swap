@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 18:44:46 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/18 18:45:32 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/18 19:05:53 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	print_stack(char id, t_stack	stack)
 		while (1)
 		{
 			printf(" %d", ptr->n);
-			if (ptr == stack.tail)
+			if (ptr == stack.head->prev)
 				break ;
 			ptr = ptr->next;
 		}

@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 22:39:55 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/18 18:46:05 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/18 19:29:14 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_stack
 {
 	int		size;
 	t_node	*head;
-	t_node	*tail;
 }	t_stack;
 
 typedef enum e_operation
@@ -57,6 +56,8 @@ int		ft_atoi(const char *str);
 int		is_numeric(const char *s);
 int		ft_strcmp(const char *s1, const char *s2);
 int		is_sorted(int *nums, int count);
+int		ft_min(int a, int b);
+int		ft_max(int a, int b);
 
 //stack operations
 void	push(t_stack *stack, t_node *node);
