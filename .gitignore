@@ -3,4 +3,7 @@ py_files
 libft
 __pycache__
 a.out
-test.sh
+push_swap
+checker
+*.sh
+libft.a

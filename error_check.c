@@ -6,16 +6,17 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 18:26:52 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/20 19:00:17 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/20 22:22:59 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
 #include "push_swap.h"
+#include "libft.h"
 
-# define INT_MAX_S "2147483647"
-# define INT_MIN_S "-2147483648"
+#define INT_MAX_S "2147483647"
+#define INT_MIN_S "-2147483648"
 
 void	exit_error(void)
 {
@@ -81,7 +82,10 @@ int	is_valid_instruction(char *inst)
 	ops = get_operations();
 	i = 0;
 	while (i < OP_COUNT)
-		if (ft_strcmp(inst, ops[i++]) == 0)
-			return (0);
-	return (1);
+	{
+		if (ft_strcmp(inst, ops[i]) == 0)
+			return (i);
+		i++;
+	}
+	return (-1);
 }

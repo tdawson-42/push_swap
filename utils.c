@@ -6,34 +6,13 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:54:48 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/18 21:26:32 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/20 22:42:04 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 #include "push_swap.h"
-
-int	ft_isdigit(int c)
-{
-	return (c >= '0' && c <= '9');
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	while (*s1 && *s2 && *s1 == *s2)
-	{
-		s1++;
-		s2++;
-	}
-	return ((unsigned char)*s1 - (unsigned char)*s2);
-}
-
-int	ft_isspace(int c)
-{
-	return (c == ' ' || c == '\n' || c == '\t'
-		|| c == '\v' || c == '\f' || c == '\r');
-}
+#include "libft.h"
 
 int	is_numeric(const char *s)
 {
@@ -43,6 +22,20 @@ int	is_numeric(const char *s)
 	while (ft_isdigit(*s))
 		s++;
 	return (*s == 0);
+}
+
+int	is_stack_sorted(t_stack stack)
+{
+	t_node	*node;
+
+	node = stack.head;
+	while (node != stack.head->prev)
+	{
+		if (node->n > node->next->n)
+			return (0);
+		node = node->next;
+	}
+	return (1);
 }
 
 int	is_sorted(int *nums, int count)
@@ -59,53 +52,14 @@ int	is_sorted(int *nums, int count)
 	return (1);
 }
 
-int	ft_atoi(const char *str)
+void	array_to_stack(int *nums, int count, t_stack *stack)
 {
-	unsigned long long	n;
-	int					sign;
+	t_node	*node;
 
-	sign = 1;
-	n = 0;
-	if (*str == '-')
-		sign = -1;
-	if (*str == '-' || *str == '+')
-		++str;
-	while (ft_isdigit(*str))
+	while (--count >= 0)
 	{
-		n = n * 10 + (*str - '0');
-		++str;
+		node = malloc(sizeof(t_node));
+		node->n = nums[count];
+		push(stack, node);
 	}
-	return (n * sign);
-}
-
-int ft_abs(int n)
-{
-	if (n < 0)
-		return (n * -1);
-	return (n);
-}
-
-int ft_max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
-
-int ft_min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	if (s)
-		while (s[i])
-			i++;
-	return (i);
 }

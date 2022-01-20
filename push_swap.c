@@ -6,26 +6,14 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:21:02 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/19 22:56:28 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/20 22:11:43 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
 #include "push_swap.h"
-
-void	array_to_stack(int *nums, int count, t_stack *stack)
-{
-	t_node	*node;
-
-	while (--count >= 0)
-	{
-		node = malloc(sizeof(t_node));
-		node->n = nums[count];
-		push(stack, node);
-	}
-}
+#include "libft.h"
 
 void	sort3(t_stack *stack, int a, int b, int c)
 {

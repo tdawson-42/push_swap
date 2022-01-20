@@ -6,14 +6,14 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 21:29:22 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/20 18:39:52 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/20 21:26:34 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include "push_swap.h"
+#include "libft.h"
 
 int	main(int argc, char **argv)
 {

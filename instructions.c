@@ -6,27 +6,28 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 21:11:46 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/20 18:51:00 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/20 21:42:34 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "push_swap.h"
+#include "libft.h"
 
 char	**get_operations(void)
 {
 	static char	*op[] = {
-		"sa\n",
-		"sb\n",
-		"ss\n",
-		"pa\n",
-		"pb\n",
-		"ra\n",
-		"rb\n",
-		"rr\n",
-		"rra\n",
-		"rrb\n",
-		"rrr\n"
+		"sa",
+		"sb",
+		"ss",
+		"pa",
+		"pb",
+		"ra",
+		"rb",
+		"rr",
+		"rra",
+		"rrb",
+		"rrr"
 	};
 
 	return (op);
@@ -35,7 +36,6 @@ char	**get_operations(void)
 void	execute(t_operation op, t_stack *a, t_stack *b, int print)
 {
 	int		dir;
-	char	*op_string;
 
 	if (op == SA)
 		swap(a);
@@ -54,8 +54,5 @@ void	execute(t_operation op, t_stack *a, t_stack *b, int print)
 			rotate(b, dir);
 	}
 	if (print)
-	{
-		op_string = get_operations()[op];
-		write(1, op_string, ft_strlen(op_string));
-	}
+		ft_putendl(get_operations()[op]);
 }

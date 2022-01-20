@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 22:39:55 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/20 19:00:12 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/20 22:42:25 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,6 @@ typedef struct s_b2a
 	int			total;
 }	t_b2a;
 
-//library functions
-int		ft_atoi(const char *str);
-int		is_numeric(const char *s);
-int		ft_strcmp(const char *s1, const char *s2);
-int		is_sorted(int *nums, int count);
-int		ft_min(int a, int b);
-int		ft_max(int a, int b);
-int		ft_abs(int n);
-size_t	ft_strlen(const char *s);
-
 //stack operations
 void	push(t_stack *stack, t_node *node);
 t_node	*pop(t_stack *stack);
@@ -76,11 +66,16 @@ void	print_array(int *nums, int count);
 //Input validation
 int		check_input(int argc, char **argv);
 int		check_dupes(int *nums, int count);
+int		is_valid_instruction(char *inst);
 void	exit_error(void);
 
 void	push_swap(int *nums, int count);
 void	execute(t_operation op, t_stack *a, t_stack *b, int print);
 char	**get_operations(void);
 t_stack	get_lis(int *nums, int size);
+int		is_sorted(int *nums, int count);
+int		is_stack_sorted(t_stack stack);
+int		is_numeric(const char *s);
+void	array_to_stack(int *nums, int count, t_stack *stack);
 
 #endif
