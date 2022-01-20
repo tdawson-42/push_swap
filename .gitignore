@@ -1,5 +1,6 @@
 *.py
-python
+py_files
 libft
 __pycache__
 a.out
+test.sh

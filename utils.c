@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:54:48 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/17 20:00:41 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/18 21:26:32 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,15 @@ int ft_min(int a, int b)
 	if (a < b)
 		return (a);
 	return (b);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	if (s)
+		while (s[i])
+			i++;
+	return (i);
 }
