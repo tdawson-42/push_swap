@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 18:18:22 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/21 19:52:53 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/21 23:42:15 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,16 @@ void	checker(int *nums, int size)
 		if ((signed)op == -1)
 			exit_error();
 		execute(op, &a, &b, 0);
+		free(line);
 	}
 	if (a.size == size && b.size == 0 && is_stack_sorted(a))
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
+	while (a.size > 0)
+		free(pop(&a));
+	while (b.size > 0)
+		free(pop(&b));
 }
 
 int	main(int argc, char **argv)

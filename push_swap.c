@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 21:29:22 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/21 23:07:27 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/21 23:36:33 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	sort_large_stack(t_stack *a, t_stack *b, int *nums, int size)
 			lis.head = lis.head->next;
 		}
 	}
+	while (lis.size > 0)
+		free(pop(&lis));
 	sort_b_to_a(a, b);
 }
 
@@ -90,6 +92,10 @@ void	push_swap(int *nums, int size)
 	else
 		sort_large_stack(&a, &b, nums, size);
 	align_stack(&a);
+	while (a.size > 0)
+		free(pop(&a));
+	while (b.size > 0)
+		free(pop(&b));
 }
 
 int	main(int argc, char **argv)
