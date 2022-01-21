@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 22:39:55 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/20 22:42:25 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/21 20:40:21 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,12 @@ void	exit_error(void);
 void	push_swap(int *nums, int count);
 void	execute(t_operation op, t_stack *a, t_stack *b, int print);
 char	**get_operations(void);
-t_stack	get_lis(int *nums, int size);
+t_stack	longest_incr_subseq(int *nums, int size);
 int		is_sorted(int *nums, int count);
 int		is_stack_sorted(t_stack stack);
-int		is_numeric(const char *s);
 void	array_to_stack(int *nums, int count, t_stack *stack);
+int		*args_to_int_arr(char **args, int size);
+t_b2a	shortest_path(t_stack a, t_stack b);
+void	align_stack(t_stack *stack);
 
 #endif

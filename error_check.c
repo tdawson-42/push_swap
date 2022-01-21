@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 18:26:52 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/20 22:22:59 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/21 20:40:27 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	check_input(int argc, char **argv)
 	i = 0;
 	while (++i < argc)
 	{
-		if (!is_numeric(argv[i]))
+		if (!ft_str_is_numeric(argv[i]))
 			break ;
 		if (int_overflow(argv[i]))
 			break ;

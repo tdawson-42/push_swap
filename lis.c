@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 21:19:35 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/19 22:26:42 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/21 20:19:13 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	binary_search(const int *seq, int *s, int i, int up)
 	return (lo);
 }
 
-t_stack	longest_incr_subseq(const int *seq, int *s, int *p, int size)
+t_stack	get_lis(const int *seq, int *s, int *p, int size)
 {
 	int	i;
 	int	j;
@@ -77,12 +77,14 @@ t_stack	longest_incr_subseq(const int *seq, int *s, int *p, int size)
 	return (create_lis(seq, s, p, lis_len));
 }
 
-t_stack	get_lis(int *nums, int size)
+t_stack	longest_incr_subseq(int *nums, int size)
 {	
 	t_stack		lis;
 	int *const	s = malloc(sizeof(int) * size);
 	int *const	p = malloc(sizeof(int) * size);
 
-	lis = longest_incr_subseq(nums, s, p, size);
+	lis = get_lis(nums, s, p, size);
+	free(s);
+	free(p);
 	return (lis);
 }

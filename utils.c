@@ -6,23 +6,13 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 16:54:48 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/20 22:42:04 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/21 20:36:23 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "push_swap.h"
 #include "libft.h"
-
-int	is_numeric(const char *s)
-{
-	if (*s == '-' || *s == '+')
-		if (!ft_isdigit(*++s))
-			return (0);
-	while (ft_isdigit(*s))
-		s++;
-	return (*s == 0);
-}
 
 int	is_stack_sorted(t_stack stack)
 {
@@ -62,4 +52,16 @@ void	array_to_stack(int *nums, int count, t_stack *stack)
 		node->n = nums[count];
 		push(stack, node);
 	}
+}
+
+int	*args_to_int_arr(char **args, int size)
+{
+	int	i;
+	int	*nums;
+
+	i = -1;
+	nums = malloc((size) * sizeof(int));
+	while (++i < size)
+		nums[i] = ft_atoi(args[i]);
+	return (nums);
 }
