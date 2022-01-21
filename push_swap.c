@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 21:29:22 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/21 20:22:54 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/21 23:07:27 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,19 @@ void	sort_b_to_a(t_stack *a, t_stack *b)
 
 void	sort_large_stack(t_stack *a, t_stack *b, int *nums, int size)
 {
-	t_stack	lis;
+	t_stack		lis;
+	long long	mean;
 
+	mean = ft_sum(nums, size) / size;
 	lis = longest_incr_subseq(nums, size);
 	while (a->size != lis.size)
 	{
 		if (a->head->n != lis.head->n)
+		{
 			execute(PB, a, b, 1);
+			if (b->head->n < mean)
+				execute(RB, NULL, b, 1);
+		}
 		else
 		{
 			execute(RA, a, NULL, 1);
@@ -48,7 +54,7 @@ void	sort_large_stack(t_stack *a, t_stack *b, int *nums, int size)
 	sort_b_to_a(a, b);
 }
 
-void	sort3(t_stack *stack, int a, int b, int c)
+void	sort_3(t_stack *stack, int a, int b, int c)
 {
 	unsigned int	order;
 
@@ -78,7 +84,7 @@ void	push_swap(int *nums, int size)
 	{
 		while (a.size > 3)
 			execute(PB, &a, &b, 1);
-		sort3(&a, a.head->n, a.head->next->n, a.head->prev->n);
+		sort_3(&a, a.head->n, a.head->next->n, a.head->prev->n);
 		sort_b_to_a(&a, &b);
 	}
 	else
