@@ -10,9 +10,9 @@ PUSH_SWAP_SRC = push_swap.c \
 CHECKER_SRC = checker.c
 
 COMMON_SRC = error_check.c \
-			instructions.c \
 			print.c \
 			stack_operations.c \
+			stack_utils.c \
 			utils.c
 
 SRC = $(PUSH_SWAP_SRC) $(CHECKER_SRC) $(COMMON_SRC)

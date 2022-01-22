@@ -6,14 +6,14 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 21:19:35 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/21 20:19:13 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/22 17:56:23 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "push_swap.h"
 
-t_stack	create_lis(const int *seq, int *s, int *p, int lis_len)
+static t_stack	get_lis_sequence(const int *seq, int *s, int *p, int lis_len)
 {
 	t_stack	lis;
 	t_node	*node;
@@ -31,7 +31,7 @@ t_stack	create_lis(const int *seq, int *s, int *p, int lis_len)
 	return (lis);
 }
 
-int	binary_search(const int *seq, int *s, int i, int up)
+static int	binary_search(const int *seq, int *s, int i, int up)
 {
 	int	lo;
 	int	mid;
@@ -48,7 +48,7 @@ int	binary_search(const int *seq, int *s, int i, int up)
 	return (lo);
 }
 
-t_stack	get_lis(const int *seq, int *s, int *p, int size)
+static t_stack	lis(const int *seq, int *s, int *p, int size)
 {
 	int	i;
 	int	j;
@@ -74,17 +74,17 @@ t_stack	get_lis(const int *seq, int *s, int *p, int size)
 			p[i] = s[j - 1];
 		}
 	}
-	return (create_lis(seq, s, p, lis_len));
+	return (get_lis_sequence(seq, s, p, lis_len));
 }
 
 t_stack	longest_incr_subseq(int *nums, int size)
 {	
-	t_stack		lis;
+	t_stack		longest;
 	int *const	s = malloc(sizeof(int) * size);
 	int *const	p = malloc(sizeof(int) * size);
 
-	lis = get_lis(nums, s, p, size);
+	longest = lis(nums, s, p, size);
 	free(s);
 	free(p);
-	return (lis);
+	return (longest);
 }

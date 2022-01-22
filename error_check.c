@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 18:26:52 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/21 20:40:27 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/22 19:37:32 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,19 @@
 #define INT_MAX_S "2147483647"
 #define INT_MIN_S "-2147483648"
 
-void	exit_error(void)
+void	exit_program(int error, int *nums)
 {
-	write(2, "Error\n", 6);
-	exit(1);
+	if (nums)
+		free(nums);
+	if (error)
+	{
+		write(2, "Error\n", 6);
+		exit(EXIT_FAILURE);
+	}
+	exit(EXIT_SUCCESS);
 }
 
-int	int_overflow(char *s)
+static int	int_overflow(char *s)
 {
 	int	sign;
 	int	len;
@@ -39,16 +45,16 @@ int	int_overflow(char *s)
 		return (len == 10 + sign && ft_strcmp(INT_MAX_S, s + sign) < 0);
 }
 
-int	check_dupes(int *nums, int count)
+int	check_duplicates(int *nums, int size)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < count - 1)
+	while (i < size - 1)
 	{
 		j = i + 1;
-		while (j < count)
+		while (j < size)
 		{
 			if (nums[i] == nums[j])
 				return (0);
@@ -72,20 +78,4 @@ int	check_input(int argc, char **argv)
 			break ;
 	}
 	return (i == argc);
-}
-
-int	is_valid_instruction(char *inst)
-{	
-	int		i;
-	char	**ops;
-
-	ops = get_operations();
-	i = 0;
-	while (i < OP_COUNT)
-	{
-		if (ft_strcmp(inst, ops[i]) == 0)
-			return (i);
-		i++;
-	}
-	return (-1);
 }

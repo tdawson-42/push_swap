@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 22:39:55 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/21 20:40:21 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/22 20:25:30 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define PUSH_SWAP_H
 
 # include <stddef.h>
+
+# define ERROR 1
+# define NO_ERROR 0
 
 typedef struct s_node
 {
@@ -57,27 +60,30 @@ typedef struct s_b2a
 void	push(t_stack *stack, t_node *node);
 t_node	*pop(t_stack *stack);
 void	swap(t_stack *stack);
-void	rotate(t_stack *stack, int n);
+void	rotate(t_stack *stack, int dir);
+void	execute(t_operation op, t_stack *a, t_stack *b, int print);
 
 //printing DELETE
 void	print_stack(char id, t_stack stack);
-void	print_array(int *nums, int count);
+void	print_array(int *nums, int size);
 
-//Input validation
+//input validation
 int		check_input(int argc, char **argv);
-int		check_dupes(int *nums, int count);
-int		is_valid_instruction(char *inst);
-void	exit_error(void);
+int		check_duplicates(int *nums, int size);
 
-void	push_swap(int *nums, int count);
-void	execute(t_operation op, t_stack *a, t_stack *b, int print);
-char	**get_operations(void);
+//algorithms
 t_stack	longest_incr_subseq(int *nums, int size);
-int		is_sorted(int *nums, int count);
-int		is_stack_sorted(t_stack stack);
-void	array_to_stack(int *nums, int count, t_stack *stack);
-int		*args_to_int_arr(char **args, int size);
 t_b2a	shortest_path(t_stack a, t_stack b);
+
+//stack utility functions
+int		is_stack_sorted(t_stack stack);
 void	align_stack(t_stack *stack);
+void	array_to_stack(int *arr, int size, t_stack *stack);
+
+//other utility functions
+void	exit_program(int error, int *nums);
+char	**operation_strings(void);
+int		is_sorted(int *arr, int size);
+int		*args_to_int_arr(char **args, int size);
 
 #endif

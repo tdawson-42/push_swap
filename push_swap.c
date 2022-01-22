@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 21:29:22 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/21 23:36:33 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/22 18:37:02 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,6 @@ void	push_swap(int *nums, int size)
 	t_stack	a;
 	t_stack	b;
 
-	if (size == 2)
-	{
-		execute(SA, &a, NULL, 1);
-		return ;
-	}
 	a.size = 0;
 	b.size = 0;
 	array_to_stack(nums, size, &a);
@@ -105,21 +100,18 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	if (!check_input(argc, argv))
-		exit_error();
+		exit_program(ERROR, NULL);
 	if (argc == 2)
 		return (0);
 	nums = args_to_int_arr(argv + 1, argc - 1);
-	if (!check_dupes(nums, argc - 1))
-	{
-		free(nums);
-		exit_error();
-	}
+	if (!check_duplicates(nums, argc - 1))
+		exit_program(ERROR, nums);
 	if (is_sorted(nums, argc - 1))
-	{
-		free(nums);
-		return (0);
-	}
-	push_swap(nums, argc - 1);
+		exit_program(NO_ERROR, nums);
+	if (argc == 3)
+		ft_putstr("sa\n");
+	else
+		push_swap(nums, argc - 1);
 	free(nums);
 	return (0);
 }

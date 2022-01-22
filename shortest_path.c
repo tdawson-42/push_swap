@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   shortest_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:21:02 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/21 20:31:58 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/22 19:49:18 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #define LEFT -1
 #define RIGHT 1
 
-int	search_position(t_stack stack, int n)
+static int	search_position(t_stack stack, int n)
 {
 	int		i;
 	t_node	*before;
@@ -41,7 +41,7 @@ int	search_position(t_stack stack, int n)
 	}
 }
 
-t_b2a	same_rotate(int a_pos, int b_pos, int dir)
+static t_b2a	same_rotate(int a_pos, int b_pos, int dir)
 {	
 	int		offset;
 	t_b2a	moves;
@@ -61,7 +61,7 @@ t_b2a	same_rotate(int a_pos, int b_pos, int dir)
 	return (moves);
 }
 
-t_b2a	mixed_rotate(int a_pos, int a_len, int b_pos, int b_len)
+static t_b2a	mixed_rotate(int a_pos, int a_len, int b_pos, int b_len)
 {
 	t_b2a	moves;
 
@@ -83,7 +83,7 @@ t_b2a	mixed_rotate(int a_pos, int a_len, int b_pos, int b_len)
 	return (moves);
 }
 
-t_b2a	ss(int a_pos, int a_len, int b_pos, int b_len)
+static t_b2a	ss(int a_pos, int a_len, int b_pos, int b_len)
 {
 	t_b2a	l_rot;
 	t_b2a	r_rot;
@@ -122,27 +122,4 @@ t_b2a	shortest_path(t_stack a, t_stack b)
 		b_pos++;
 	}
 	return (shortest);
-}
-
-void	align_stack(t_stack *stack)
-{
-	int		i;
-	t_node	*node;
-
-	i = 0;
-	node = stack->head;
-	while (node->prev->n < node->n)
-	{
-		node = node->next;
-		i++;
-	}
-	if (i < stack->size - i)
-		while (i--)
-			execute(RA, stack, NULL, 1);
-	else
-	{
-		i = stack->size - i;
-		while (i--)
-			execute(RRA, stack, NULL, 1);
-	}
 }
