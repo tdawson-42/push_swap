@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:07:16 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/22 20:18:03 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/23 17:25:32 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,24 @@ void	swap(t_stack *stack)
 	int		tmp;
 	t_node	*head;
 
-	head = stack->head;
-	tmp = head->n;
-	head->n = head->next->n;
-	head->next->n = tmp;
+	if (stack && stack->size >= 2)
+	{
+		head = stack->head;
+		tmp = head->n;
+		head->n = head->next->n;
+		head->next->n = tmp;
+	}
 }
 
 void	rotate(t_stack *stack, int dir)
 {
-	if (dir > 0)
-		stack->head = stack->head->prev;
-	else
-		stack->head = stack->head->next;
+	if (stack && stack->size >= 2)
+	{
+		if (dir > 0)
+			stack->head = stack->head->prev;
+		else
+			stack->head = stack->head->next;
+	}
 }
 
 void	push(t_stack *stack, t_node *node)
