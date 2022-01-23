@@ -6,29 +6,15 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 18:26:52 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/22 19:37:32 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/22 21:41:10 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "push_swap.h"
 #include "libft.h"
 
 #define INT_MAX_S "2147483647"
 #define INT_MIN_S "-2147483648"
-
-void	exit_program(int error, int *nums)
-{
-	if (nums)
-		free(nums);
-	if (error)
-	{
-		write(2, "Error\n", 6);
-		exit(EXIT_FAILURE);
-	}
-	exit(EXIT_SUCCESS);
-}
 
 static int	int_overflow(char *s)
 {
