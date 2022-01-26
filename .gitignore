@@ -1,9 +1,0 @@
-*.py
-py_files
-libft
-__pycache__
-a.out
-push_swap
-checker
-*.sh
-libft.a
