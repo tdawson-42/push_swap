@@ -6,32 +6,31 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 18:26:52 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/22 21:41:10 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/26 23:35:24 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
 
-#define INT_MAX_S "2147483647"
-#define INT_MIN_S "-2147483648"
-
-static int	int_overflow(char *s)
+static int	overflows_int(char *s)
 {
-	int	sign;
-	int	len;
+	int					sign;
+	int					len;
+	static const char	*int_max_str = "2147483647";
+	static const char	*int_min_str = "-2147483648";
 
 	sign = (*s == '-' || *s == '+');
 	len = ft_strlen(s);
 	if (len > 10 + sign)
 		return (1);
 	if (*s == '-')
-		return (len == 11 && ft_strcmp(INT_MIN_S, s) < 0);
+		return (len == 11 && ft_strcmp(int_min_str, s) < 0);
 	else
-		return (len == 10 + sign && ft_strcmp(INT_MAX_S, s + sign) < 0);
+		return (len == 10 + sign && ft_strcmp(int_max_str, s + sign) < 0);
 }
 
-int	check_duplicates(int *nums, int size)
+int	find_duplicates(int *nums, int size)
 {
 	int	i;
 	int	j;
@@ -43,15 +42,15 @@ int	check_duplicates(int *nums, int size)
 		while (j < size)
 		{
 			if (nums[i] == nums[j])
-				return (0);
+				return (1);
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
-int	check_input(int argc, char **argv)
+int	validate_args(int argc, char **argv)
 {
 	int		i;
 
@@ -59,9 +58,9 @@ int	check_input(int argc, char **argv)
 	while (++i < argc)
 	{
 		if (!ft_str_is_numeric(argv[i]))
-			break ;
-		if (int_overflow(argv[i]))
-			break ;
+			return (0);
+		if (overflows_int(argv[i]))
+			return (0);
 	}
-	return (i == argc);
+	return (1);
 }

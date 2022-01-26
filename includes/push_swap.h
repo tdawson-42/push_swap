@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 22:39:55 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/22 20:25:30 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/26 23:13:54 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ void	execute(t_operation op, t_stack *a, t_stack *b, int print);
 void	print_stack(char id, t_stack stack);
 void	print_array(int *nums, int size);
 
-//input validation
-int		check_input(int argc, char **argv);
-int		check_duplicates(int *nums, int size);
+//argument validation
+int		validate_args(int argc, char **argv);
+int		find_duplicates(int *nums, int size);
 
-//algorithms
+//algorithms for sorting
 t_stack	longest_incr_subseq(int *nums, int size);
 t_b2a	shortest_path(t_stack a, t_stack b);
 

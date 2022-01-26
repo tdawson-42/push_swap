@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 21:29:22 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/22 18:37:02 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/26 23:24:43 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,12 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	if (!check_input(argc, argv))
+	if (!validate_args(argc, argv))
 		exit_program(ERROR, NULL);
 	if (argc == 2)
 		return (0);
 	nums = args_to_int_arr(argv + 1, argc - 1);
-	if (!check_duplicates(nums, argc - 1))
+	if (find_duplicates(nums, argc - 1))
 		exit_program(ERROR, nums);
 	if (is_sorted(nums, argc - 1))
 		exit_program(NO_ERROR, nums);

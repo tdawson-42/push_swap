@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 19:34:29 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/22 20:22:33 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/26 23:18:16 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	array_to_stack(int *arr, int size, t_stack *stack)
 	}
 }
 
+//rotates stack until the smallest value is at the top
 void	align_stack(t_stack *stack)
 {
 	int		i;

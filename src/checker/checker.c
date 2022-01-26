@@ -6,13 +6,15 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 18:18:22 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/22 19:32:18 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/26 23:19:58 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 #include <stdlib.h>
+
+#define STDIN_FILENO 0
 
 static int	get_operation(char *input)
 {	
@@ -40,7 +42,7 @@ static void	checker(int *nums, int size)
 	a.size = 0;
 	b.size = 0;
 	array_to_stack(nums, size, &a);
-	while (get_next_line(0, &input))
+	while (get_next_line(STDIN_FILENO, &input))
 	{
 		op = get_operation(input);
 		free(input);
@@ -64,10 +66,10 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	if (!check_input(argc, argv))
+	if (!validate_args(argc, argv))
 		exit_program(ERROR, NULL);
 	nums = args_to_int_arr(argv + 1, argc - 1);
-	if (!check_duplicates(nums, argc - 1))
+	if (find_duplicates(nums, argc - 1))
 		exit_program(ERROR, nums);
 	checker(nums, argc - 1);
 	free(nums);
