@@ -4,8 +4,8 @@ CC = gcc
 FLAGS = -Wall -Werror -Wextra
 
 PUSH_SWAP_SRC = push_swap.c \
-				lis.c \
-				shortest_path.c
+			lis.c \
+			shortest_path.c
 
 CHECKER_SRC = checker.c
 
@@ -15,32 +15,43 @@ COMMON_SRC = error_check.c \
 			stack_utils.c \
 			utils.c
 
-SRC = $(PUSH_SWAP_SRC) $(CHECKER_SRC) $(COMMON_SRC)
+INC = -Iincludes/ -Ilibft/includes/
 
-INC = -Ilibft/includes/
+PS_DIR = src/push_swap
+CHK_DIR = src/checker
+CMN_DIR = src/common
 
 OBJ_DIR = objs
-PUSH_SWAP_OBJ = $(addprefix $(OBJ_DIR)/,$(PUSH_SWAP_SRC:.c=.o))
-CHECKER_OBJ = $(addprefix $(OBJ_DIR)/,$(CHECKER_SRC:.c=.o))
-COMMON_OBJ = $(addprefix $(OBJ_DIR)/,$(COMMON_SRC:.c=.o))
-OBJ = $(PUSH_SWAP_OBJ) $(CHECKER_OBJ) $(COMMON_OBJ)
+PS_O_DIR = $(OBJ_DIR)/push_swap
+CHK_O_DIR = $(OBJ_DIR)/checker
+CMN_O_DIR = $(OBJ_DIR)/common
+
+PS_OBJ = $(addprefix $(PS_O_DIR)/,$(PUSH_SWAP_SRC:.c=.o))
+CHK_OBJ = $(addprefix $(CHK_O_DIR)/,$(CHECKER_SRC:.c=.o))
+CMN_OBJ = $(addprefix $(CMN_O_DIR)/,$(COMMON_SRC:.c=.o))
 
 LIBFT_DIR = libft
 LIBFT = libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJ_DIR) $(OBJ)
-	@$(CC) $(FLAGS) -o push_swap $(PUSH_SWAP_OBJ) $(COMMON_OBJ) $(LIBFT)
-	@$(CC) $(FLAGS) -o checker $(CHECKER_OBJ) $(COMMON_OBJ) $(LIBFT)
+$(NAME): $(LIBFT) $(PS_OBJ) $(CHK_OBJ) $(CMN_OBJ)
+	@$(CC) $(FLAGS) -o push_swap $(PS_OBJ) $(CMN_OBJ) $(LIBFT)
+	@$(CC) $(FLAGS) -o checker $(CHK_OBJ) $(CMN_OBJ) $(LIBFT)
 
 $(LIBFT):
 	@make --no-print-directory -C $(LIBFT_DIR)
 
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
+$(PS_O_DIR)/%.o: $(PS_DIR)/%.c
+	@mkdir -p $(PS_O_DIR)
+	@$(CC) $(FLAGS) $(INC) -o $@ -c $<
 
-$(OBJ_DIR)/%.o: %.c
+$(CHK_O_DIR)/%.o: $(CHK_DIR)/%.c
+	@mkdir -p $(CHK_O_DIR)
+	@$(CC) $(FLAGS) $(INC) -o $@ -c $<
+
+$(CMN_O_DIR)/%.o: $(CMN_DIR)/%.c
+	@mkdir -p $(CMN_O_DIR)
 	@$(CC) $(FLAGS) $(INC) -o $@ -c $<
 
 clean:
