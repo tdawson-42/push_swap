@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:41:33 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/21 20:39:18 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/27 20:14:35 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int	ft_str_is_numeric(char *s)
 {
+	int	i;
+
+	i = 0;
 	if (*s == '-' || *s == '+')
-		if (!ft_isdigit(*++s))
-			return (0);
-	while (ft_isdigit(*s))
 		s++;
-	return (*s == '\0');
+	while (s[i])
+		if (!ft_isdigit(s[i++]))
+			return (0);
+	return (i > 0);
 }
