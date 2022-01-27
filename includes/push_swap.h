@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 22:39:55 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/27 17:32:48 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/27 21:27:55 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,6 @@ t_node	*pop(t_stack *stack);
 void	swap(t_stack *stack);
 void	rotate(t_stack *stack, int dir);
 void	execute(t_operation op, t_stack *a, t_stack *b, int print);
-
-//printing DELETE
-void	print_stack(char id, t_stack stack);
-void	print_array(int *nums, int size);
 
 //argument validation
 int		validate_args(int argc, char **argv);
