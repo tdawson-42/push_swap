@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 21:29:22 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/26 23:46:15 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/27 17:32:27 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	sort_b_to_a(t_stack *a, t_stack *b)
 
 	while (b->size > 0)
 	{
-		moves = shortest_path(*a, *b);
+		moves = minimum_moves(*a, *b);
 		while (moves.op1_count--)
 			execute(moves.op1, a, b, 1);
 		while (moves.op2_count--)
@@ -56,7 +56,7 @@ static void	sort_large_stack(t_stack *a, t_stack *b, int *nums, int size)
 	sort_b_to_a(a, b);
 }
 
-static void	sort_3(t_stack *stack, int a, int b, int c)
+static void	sort_stack_of_3(t_stack *stack, int a, int b, int c)
 {
 	unsigned int	order;
 
@@ -81,7 +81,7 @@ static void	push_swap(int *nums, int size)
 	{
 		while (a.size > 3)
 			execute(PB, &a, &b, 1);
-		sort_3(&a, a.head->n, a.head->next->n, a.head->prev->n);
+		sort_stack_of_3(&a, a.head->n, a.head->next->n, a.head->prev->n);
 		sort_b_to_a(&a, &b);
 	}
 	else

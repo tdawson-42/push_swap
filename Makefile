@@ -5,7 +5,7 @@ FLAGS = -Wall -Werror -Wextra
 
 PUSH_SWAP_SRC = push_swap.c \
 			lis.c \
-			shortest_path.c
+			minimum_moves.c
 
 CHECKER_SRC = checker.c
 

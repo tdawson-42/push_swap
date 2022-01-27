@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 22:39:55 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/26 23:13:54 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/27 17:32:48 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		find_duplicates(int *nums, int size);
 
 //algorithms for sorting
 t_stack	longest_incr_subseq(int *nums, int size);
-t_b2a	shortest_path(t_stack a, t_stack b);
+t_b2a	minimum_moves(t_stack a, t_stack b);
 
 //stack utility functions
 int		is_stack_sorted(t_stack stack);

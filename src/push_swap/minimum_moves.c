@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shortest_path.c                                    :+:      :+:    :+:   */
+/*   minimum_moves.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:21:02 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/22 19:49:18 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/27 18:19:34 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,16 @@ static int	search_position(t_stack stack, int n)
 
 static t_b2a	same_rotate(int a_pos, int b_pos, int dir)
 {	
-	int		offset;
+	int		rev;
 	t_b2a	moves;
 
-	if (dir == RIGHT)
-		offset = 3;
-	else
-		offset = 0;
-	moves.op1 = RR + offset;
+	rev = 3 * (dir == RIGHT);
+	moves.op1 = RR + rev;
 	moves.op1_count = ft_min(a_pos, b_pos);
 	if (a_pos > b_pos)
-		moves.op2 = RA + offset;
+		moves.op2 = RA + rev;
 	else
-		moves.op2 = RB + offset;
+		moves.op2 = RB + rev;
 	moves.op2_count = ft_abs(a_pos - b_pos);
 	moves.total = moves.op1_count + moves.op2_count;
 	return (moves);
@@ -64,62 +61,58 @@ static t_b2a	same_rotate(int a_pos, int b_pos, int dir)
 static t_b2a	mixed_rotate(int a_pos, int a_len, int b_pos, int b_len)
 {
 	t_b2a	moves;
+	int		a_rpos;
+	int		b_rpos;
 
-	moves.op1 = RA;
-	moves.op1_count = a_pos;
-	moves.op2 = RB;
-	moves.op2_count = b_pos;
-	if ((a_len - a_pos) < a_pos)
-	{
-		moves.op1 = RRA;
-		moves.op1_count = a_len - a_pos;
-	}
-	if ((b_len - b_pos) < b_pos)
-	{
-		moves.op2 = RRB;
-		moves.op2_count = b_len - b_pos;
-	}
+	a_rpos = a_len - a_pos;
+	b_rpos = b_len - b_pos;
+	moves.op1 = RA + 3 * (a_rpos < a_pos);
+	moves.op1_count = ft_min(a_pos, a_rpos);
+	moves.op2 = RB + 3 * (b_rpos < b_pos);
+	moves.op2_count = ft_min(b_pos, b_rpos);
 	moves.total = moves.op1_count + moves.op2_count;
 	return (moves);
 }
 
-static t_b2a	ss(int a_pos, int a_len, int b_pos, int b_len)
+static t_b2a	min_moves_curr_pos(int a_pos, int a_len, int b_pos, int b_len)
 {
 	t_b2a	l_rot;
 	t_b2a	r_rot;
 	t_b2a	mix_rot;
-	t_b2a	shortest;
+	t_b2a	min;
 
 	l_rot = same_rotate(a_pos, b_pos, LEFT);
 	r_rot = same_rotate(a_len - a_pos, b_len - b_pos, RIGHT);
 	mix_rot = mixed_rotate(a_pos, a_len, b_pos, b_len);
-	shortest = l_rot;
+	min = l_rot;
 	if (r_rot.total < l_rot.total)
-		shortest = r_rot;
-	if (mix_rot.total < shortest.total)
-		shortest = mix_rot;
-	return (shortest);
+		min = r_rot;
+	if (mix_rot.total < min.total)
+		min = mix_rot;
+	return (min);
 }
 
-t_b2a	shortest_path(t_stack a, t_stack b)
+t_b2a	minimum_moves(t_stack a, t_stack b)
 {
 	int		b_pos;
+	int		a_pos;
 	t_node	*node;
-	t_b2a	shortest;
-	t_b2a	ret;
+	t_b2a	min_moves;
+	t_b2a	tmp;
 
 	b_pos = 0;
-	shortest.total = -1;
+	min_moves.total = -1;
 	node = b.head;
 	while (1)
 	{	
-		ret = ss(search_position(a, node->n), a.size, b_pos, b.size);
-		if (shortest.total == -1 || ret.total < shortest.total)
-			shortest = ret;
+		a_pos = search_position(a, node->n);
+		tmp = min_moves_curr_pos(a_pos, a.size, b_pos, b.size);
+		if (min_moves.total == -1 || tmp.total < min_moves.total)
+			min_moves = tmp;
 		if (node == b.head->prev)
 			break ;
 		node = node->next;
 		b_pos++;
 	}
-	return (shortest);
+	return (min_moves);
 }
