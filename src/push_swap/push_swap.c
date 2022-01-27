@@ -6,7 +6,7 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 21:29:22 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/26 23:24:43 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/26 23:46:15 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "push_swap.h"
 #include "libft.h"
 
-void	sort_b_to_a(t_stack *a, t_stack *b)
+static void	sort_b_to_a(t_stack *a, t_stack *b)
 {
 	t_b2a	moves;
 
@@ -30,7 +30,7 @@ void	sort_b_to_a(t_stack *a, t_stack *b)
 	}
 }
 
-void	sort_large_stack(t_stack *a, t_stack *b, int *nums, int size)
+static void	sort_large_stack(t_stack *a, t_stack *b, int *nums, int size)
 {
 	t_stack		lis;
 	long long	mean;
@@ -56,7 +56,7 @@ void	sort_large_stack(t_stack *a, t_stack *b, int *nums, int size)
 	sort_b_to_a(a, b);
 }
 
-void	sort_3(t_stack *stack, int a, int b, int c)
+static void	sort_3(t_stack *stack, int a, int b, int c)
 {
 	unsigned int	order;
 
@@ -69,7 +69,7 @@ void	sort_3(t_stack *stack, int a, int b, int c)
 		execute(RRA, stack, NULL, 1);
 }
 
-void	push_swap(int *nums, int size)
+static void	push_swap(int *nums, int size)
 {
 	t_stack	a;
 	t_stack	b;
