@@ -6,12 +6,10 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 18:21:02 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/27 18:19:34 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/27 19:29:56 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
 #include "push_swap.h"
 #include "libft.h"
 
@@ -76,19 +74,16 @@ static t_b2a	mixed_rotate(int a_pos, int a_len, int b_pos, int b_len)
 
 static t_b2a	min_moves_curr_pos(int a_pos, int a_len, int b_pos, int b_len)
 {
-	t_b2a	l_rot;
-	t_b2a	r_rot;
-	t_b2a	mix_rot;
 	t_b2a	min;
+	t_b2a	tmp;
 
-	l_rot = same_rotate(a_pos, b_pos, LEFT);
-	r_rot = same_rotate(a_len - a_pos, b_len - b_pos, RIGHT);
-	mix_rot = mixed_rotate(a_pos, a_len, b_pos, b_len);
-	min = l_rot;
-	if (r_rot.total < l_rot.total)
-		min = r_rot;
-	if (mix_rot.total < min.total)
-		min = mix_rot;
+	min = same_rotate(a_pos, b_pos, LEFT);
+	tmp = same_rotate(a_len - a_pos, b_len - b_pos, RIGHT);
+	if (tmp.total < min.total)
+		min = tmp;
+	tmp = mixed_rotate(a_pos, a_len, b_pos, b_len);
+	if (tmp.total < min.total)
+		min = tmp;
 	return (min);
 }
 

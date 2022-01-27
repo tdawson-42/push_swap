@@ -6,11 +6,10 @@
 /*   By: tdawson <tdawson@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 20:07:16 by tdawson           #+#    #+#             */
-/*   Updated: 2022/01/23 17:25:32 by tdawson          ###   ########.fr       */
+/*   Updated: 2022/01/27 19:28:28 by tdawson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "push_swap.h"
 #include "libft.h"
 
